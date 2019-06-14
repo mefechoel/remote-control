@@ -33,10 +33,9 @@ pub fn get() -> Option<IpAddr> {
 #[cfg(windows)]
 pub fn get() -> Option<IpAddr> {
   let output = Command::new("ipconfig").output().expect("Command IPCONFIG failed.");
+  let stdout = String::from_utf8_lossy(output.stdout.as_slice());
 
-  let stdout = String::from_utf8(output.stdout).unwrap();
-
-  let re = Regex::new(r#"IPv4 Address[.\s]*:\s*([\d.]+)\s*"#).unwrap();
+  let re = Regex::new(r#"IPv4[-|\s]Add?resse?[.\s]*:\s*([\d.]+)\s*"#).unwrap();
   for cap in re.captures_iter(&stdout) {
     if let Some(host) = cap.get(1) {
       if host.as_str() != "127.0.0.1" && host.as_str()[0..7] != "169.254".to_string() {
@@ -47,7 +46,7 @@ pub fn get() -> Option<IpAddr> {
     }
   }
 
-  let re = Regex::new(r#"IPv6 Address[.\s]*:\s*([a-fA-F\d:]+)\s*"#).unwrap();
+  let re = Regex::new(r#"IPv6[-|\s]Add?resse?[.\s]*:\s*([a-fA-F\d:]+)\s*"#).unwrap();
   for cap in re.captures_iter(&stdout) {
     if let Some(host) = cap.get(1) {
       if host.as_str() != "::1" {
