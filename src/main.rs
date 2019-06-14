@@ -10,6 +10,7 @@ use enigo::{Enigo, Key, KeyboardControllable};
 use rocket::config::{Config, LoggingLevel, Environment};
 use rocket_contrib::serve::StaticFiles;
 use std::io;
+#[cfg(linux)]
 use std::process::Command;
 
 const PORT: u16 = 4321;
