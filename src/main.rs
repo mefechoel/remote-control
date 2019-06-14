@@ -28,13 +28,13 @@ fn inc_vol() {
     .expect("Failed to increase volume");
 }
 
-#[cfg(target_os = "windows")]
+#[cfg(not(linux))]
 fn dec_vol() {
   let mut enigo = Enigo::new();
   enigo.key_click(Key::Raw(114));
 }
 
-#[cfg(target_os = "linux")]
+#[cfg(linux)]
 fn dec_vol() {
   Command::new("amixer")
     .args(&["-D", "pulse", "sset", "Master", "5%-"])
