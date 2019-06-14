@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Remote</title>
+</head>
+<body>
+  <button id="plus">+</button>
+  <button id="minus">-</button>
+  <button id="pause">||</button>
+  <script>
+    const plus = document.querySelector('#plus');
+    const minus = document.querySelector('#minus');
+    const pause = document.querySelector('#pause');
+    
+    plus.onclick = () => fetch('/api/plus');
+    minus.onclick = () => fetch('/api/minus');
+    pause.onclick = () => fetch('/api/pause');
+  </script>
+</body>
+</html>
