@@ -10,15 +10,16 @@ use enigo::{Enigo, Key, KeyboardControllable};
 use rocket::config::{Config, LoggingLevel, Environment};
 use rocket_contrib::serve::StaticFiles;
 use std::io;
-#[cfg(linux)]
 use std::process::Command;
 
 const PORT: u16 = 4321;
 
-#[cfg(not(linux))]
+#[cfg(windows)]
 fn inc_vol() {
-  let mut enigo = Enigo::new();
-  enigo.key_click(Key::Raw(115));
+  Command::new("nircmd.exe")
+    .args(&["changesysvolume", "500"])
+    .output()
+    .expect("Failed to increase volume");
 }
 
 #[cfg(linux)]
@@ -29,10 +30,12 @@ fn inc_vol() {
     .expect("Failed to increase volume");
 }
 
-#[cfg(not(linux))]
+#[cfg(windows)]
 fn dec_vol() {
-  let mut enigo = Enigo::new();
-  enigo.key_click(Key::Raw(114));
+  Command::new("nircmd.exe")
+    .args(&["changesysvolume", "-500"])
+    .output()
+    .expect("Failed to decrease volume");
 }
 
 #[cfg(linux)]
