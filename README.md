@@ -1,7 +1,8 @@
-# Linux
+# Install
 
-Install `xdotool`
+1. Download remote.zip
+2. Unzip folder
+3. Doubleclick install file
 
-# Windows
+The .zip file can now be removed.
 
-Install `NirCmd` [32bit](https://www.nirsoft.net/utils/nircmd.zip) [64bit](https://www.nirsoft.net/utils/nircmd-x64.zip)
