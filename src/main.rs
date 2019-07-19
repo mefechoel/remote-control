@@ -16,7 +16,7 @@ const PORT: u16 = 4321;
 
 #[cfg(windows)]
 fn inc_vol() {
-  Command::new("nircmd.exe")
+  Command::new(".\\nircmd.exe")
     .args(&["changesysvolume", "500"])
     .output()
     .expect("Failed to increase volume");
@@ -32,7 +32,7 @@ fn inc_vol() {
 
 #[cfg(windows)]
 fn dec_vol() {
-  Command::new("nircmd.exe")
+  Command::new(".\\nircmd.exe")
     .args(&["changesysvolume", "-500"])
     .output()
     .expect("Failed to decrease volume");
