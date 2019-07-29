@@ -7,9 +7,40 @@
   <title>Remote</title>
 </head>
 <body>
-  <button id="plus">+</button>
-  <button id="minus">-</button>
-  <button id="pause">||</button>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .controlls {
+      margin-bottom: 30vh;
+    }
+    .btn {
+      display: inline-block;
+      width: 20vw;
+      height: 20vw;
+      background: #bcd;
+      border: none;
+      border-radius: 5px;
+      font-size: 22px;
+      color: #444;
+    }
+  </style>
+  <div class="wrapper">
+    <div class="controlls">
+      <button class="btn" id="plus">+</button>
+      <button class="btn" id="minus">-</button>
+      <button class="btn" id="pause">||</button>
+    </div>
+  </div>
   <script>
     const plus = document.querySelector('#plus');
     const minus = document.querySelector('#minus');
