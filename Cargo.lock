@@ -101,36 +101,36 @@ dependencies = [
 
 [[package]]
 name = "crossterm"
-version = "0.9.5"
+version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "crossterm_style 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "crossterm_utils 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossterm_style 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossterm_utils 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "crossterm_style"
-version = "0.3.3"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "crossterm_utils 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "crossterm_winapi 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossterm_utils 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossterm_winapi 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "winapi 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "crossterm_utils"
-version = "0.2.3"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "crossterm_winapi 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossterm_winapi 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.58 (registry+https://github.com/rust-lang/crates.io-index)",
  "winapi 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "crossterm_winapi"
-version = "0.1.4"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "winapi 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -505,16 +505,16 @@ dependencies = [
 
 [[package]]
 name = "qr2term"
-version = "0.1.2"
+version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "crossterm 0.9.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "qrcode 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossterm 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "qrcode 0.11.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "qrcode"
-version = "0.10.0"
+version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "checked_int_cast 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -566,7 +566,7 @@ name = "remote"
 version = "0.1.0"
 dependencies = [
  "enigo 0.0.13 (registry+https://github.com/rust-lang/crates.io-index)",
- "qr2term 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "qr2term 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.2.11 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket_contrib 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -912,10 +912,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum core-foundation 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)" = "286e0b41c3a20da26536c6000a280585d519fd07b3956b43aed8a79e9edce980"
 "checksum core-foundation-sys 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)" = "716c271e8613ace48344f723b60b900a93150271e5be206212d052bbc0883efa"
 "checksum core-graphics 0.13.0 (registry+https://github.com/rust-lang/crates.io-index)" = "fb0ed45fdc32f9ab426238fba9407dfead7bacd7900c9b4dd3f396f46eafdae3"
-"checksum crossterm 0.9.5 (registry+https://github.com/rust-lang/crates.io-index)" = "9c3170cf0815299f3507810e4588f3addf073f2869e150375493f588877ba46c"
-"checksum crossterm_style 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "983596405fe738aac9645656b666073fe6e0a8bf088679b7e256916ee41b61f7"
-"checksum crossterm_utils 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "8321d40908d0ee77cb29335f591eae2b4f7225152f81b9dfa35a161ca3b077dc"
-"checksum crossterm_winapi 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)" = "8c061e4a1c47a53952ba0f2396c00a61cd7ab74482eba99b9c9cc77fdca71932"
+"checksum crossterm 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)" = "9abce7d7c50e9823ea0c0dbeb8f16d7e247af06d75b4c6244ea0a0998b3a6f35"
+"checksum crossterm_style 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)" = "8b950f8262e29a446a8a976e0290b67a9067ddc9620f9fb37961d2377f0d8c09"
+"checksum crossterm_utils 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "f874a71b2040c730669ddff805c9bc2a1a2f6de9d7f6aab2ae8d29ccbf8a0617"
+"checksum crossterm_winapi 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "b055e7cc627c452e6a9b977022f48a2db6f0ff73df446ca970f95eef9c381d45"
 "checksum devise 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "74e04ba2d03c5fa0d954c061fc8c9c288badadffc272ebb87679a89846de3ed3"
 "checksum devise_codegen 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "066ceb7928ca93a9bedc6d0e612a8a0424048b0ab1f75971b203d01420c055d7"
 "checksum devise_core 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "cf41c59b22b5e3ec0ea55c7847e5f358d340f3a8d6d53a5cf4f1564967f96487"
@@ -960,8 +960,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum percent-encoding 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "31010dd2e1ac33d5b46a5b413495239882813e0369f8ed8a5e266f173602f831"
 "checksum pkg-config 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)" = "676e8eb2b1b4c9043511a9b7bea0915320d7e502b0a079fb03f9635a5252b18c"
 "checksum proc-macro2 0.4.30 (registry+https://github.com/rust-lang/crates.io-index)" = "cf3d2011ab5c909338f7887f4fc896d35932e29146c12c8d01da6b22a80ba759"
-"checksum qr2term 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)" = "c1de776a59e034dedc9fe157b5d894b315e420a18a1d05a8d66b4d4fa3cf4740"
-"checksum qrcode 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)" = "83861e2b599ea2a911357ca0d8474ce124cf6caf70fc00d4cba96bbac5cf6690"
+"checksum qr2term 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)" = "45bbcc3ad0c36e10a4b37851fb64826e35238dda050d2a7cd6bdc73b8602944a"
+"checksum qrcode 0.11.2 (registry+https://github.com/rust-lang/crates.io-index)" = "f5b09efe9b8aa5d34d310a0bfd76122cd6f7d0c91016a5fe928635eab033eb8a"
 "checksum quote 0.6.12 (registry+https://github.com/rust-lang/crates.io-index)" = "faf4799c5d274f3868a4aae320a0a182cbd2baee377b378f080e16a23e9d80db"
 "checksum redox_syscall 0.1.54 (registry+https://github.com/rust-lang/crates.io-index)" = "12229c14a0f65c4f1cb046a3b52047cdd9da1f4b30f8a39c5063c8bae515e252"
 "checksum redox_termios 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "7e891cfe48e9100a70a3b6eb652fef28920c117d366339687bd5576160db0f76"
