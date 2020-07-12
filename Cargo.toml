@@ -5,7 +5,7 @@ authors = ["michel <michel.strelow97@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-enigo = "0.0.13"
+enigo = "0.0.14"
 rocket = "0.4.3"
 rocket_contrib = "0.4.3"
 serde = "1.0"
