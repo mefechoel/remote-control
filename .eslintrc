@@ -1,0 +1,30 @@
+{
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-filename-extension": "off",
+    "indent": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "import/no-named-as-default": "off",
+    "no-restricted-syntax": "off",
+    "no-underscore-dangle": "off"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  }
+}

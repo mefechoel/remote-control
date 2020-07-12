@@ -1,54 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Remote</title>
-</head>
-<body>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-    .wrapper {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-    .controlls {
-      margin-bottom: 30vh;
-    }
-    .btn {
-      display: inline-block;
-      width: 20vw;
-      height: 20vw;
-      background: #bcd;
-      border: none;
-      border-radius: 5px;
-      font-size: 22px;
-      color: #444;
-    }
-  </style>
-  <div class="wrapper">
-    <div class="controlls">
-      <button class="btn" id="plus">+</button>
-      <button class="btn" id="minus">-</button>
-      <button class="btn" id="pause">||</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Remote</title>
+    <link rel="shortcut icon" href="icons/logo-192.png" />
+    <meta name="theme-color" content="#b75d69" />
+  </head>
+  <body>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        background-color: #1a1423;
+      }
+      .controlls {
+        margin-bottom: 30vh;
+      }
+      .btn {
+        display: inline-block;
+        width: 90px;
+        height: 90px;
+        background: #b75d69;
+        border: none;
+        border-radius: 5px;
+        font-size: 22px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn svg {
+        width: 40px;
+        height: 40px;
+        fill: #eee;
+      }
+    </style>
+    <div class="wrapper">
+      <div class="controlls">
+        <button class="btn" id="plus">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </button>
+        <button class="btn" id="minus">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path d="M19 13H5v-2h14v2z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </button>
+        <button class="btn" id="pause">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </button>
+      </div>
     </div>
-  </div>
-  <script>
-    const plus = document.querySelector('#plus');
-    const minus = document.querySelector('#minus');
-    const pause = document.querySelector('#pause');
-    
-    plus.onclick = () => fetch('/api/plus');
-    minus.onclick = () => fetch('/api/minus');
-    pause.onclick = () => fetch('/api/pause');
-  </script>
-</body>
+    <script>
+      const plus = document.querySelector('#plus');
+      const minus = document.querySelector('#minus');
+      const pause = document.querySelector('#pause');
+
+      plus.onclick = () => fetch('/api/plus');
+      minus.onclick = () => fetch('/api/minus');
+      pause.onclick = () => fetch('/api/pause');
+    </script>
+  </body>
 </html>
