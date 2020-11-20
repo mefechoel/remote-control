@@ -32,4 +32,11 @@
       "source.fixAll.eslint": true
     }
   },
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex"
+  ],
 }

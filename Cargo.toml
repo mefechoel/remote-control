@@ -5,11 +5,14 @@ authors = ["michel <michel.strelow97@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-enigo = "0.0.13"
-rocket = "0.4.3"
-rocket_contrib = "0.4.3"
+enigo = "0.0.14"
+rocket = "0.4.6"
+rocket_contrib = "0.4.6"
 serde = "1.0"
 serde_json = "1.0"
 serde_derive = "1.0"
-qr2term = "0.1.2"
-regex = "0.2"
+qr2term = "0.2.1"
+dns-lookup = "1.0.5"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+winapi = { version = "0.3.8", features = ["winuser"] }
