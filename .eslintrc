@@ -1,30 +1,56 @@
 {
   "plugins": [
-    "react",
-    "react-hooks"
+    "svelte3",
+    "react"
   ],
   "extends": [
-    "airbnb",
-    "plugin:prettier/recommended"
+    "airbnb"
   ],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react/jsx-filename-extension": "off",
+    "quotes": "off",
+    "linebreak-style": "off",
+    "import/no-extraneous-dependencies": "off",
     "indent": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "import/no-named-as-default": "off",
-    "no-restricted-syntax": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "arrow-parens": "off",
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "prefer-const": "off",
+    "object-curly-newline": "off",
+    "function-paren-newline": "off",
+    "no-confusing-arrow": "off"
   },
   "env": {
     "es6": true,
-    "browser": true,
-    "node": true,
-    "mocha": true
+    "browser": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2018
-  }
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.svelte"],
+      "processor": "svelte3/svelte3",
+      "rules": {
+        "import/first": "off",
+        "import/no-duplicates": "off",
+        "import/no-mutable-exports": "off",
+        "import/extensions": "off",
+        "import/no-unresolved": "off",
+        "no-undef": "off",
+        "no-multiple-empty-lines": "off",
+        "import/prefer-default-export": "off"
+      }
+    },
+    {
+      "files": ["**/*.test.js"],
+      "env": {
+        "es6": true,
+        "browser": true,
+        "jest": true
+      }
+    }
+  ]
 }

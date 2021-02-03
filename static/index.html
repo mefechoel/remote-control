@@ -170,6 +170,11 @@
       document.querySelectorAll('button').forEach(button => {
         button.onclick = () => fetch(`/api/${button.id}`);
       });
+
+      const wrapper = document.querySelector('.wrapper');
+      wrapper.onmousedown = e => {
+        console.log(e.clientX);
+      };
     </script>
   </body>
 </html>

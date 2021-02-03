@@ -8,14 +8,22 @@ mod win;
 
 mod html;
 
+use base64;
 use dns_lookup;
-use enigo::{Enigo, Key, KeyboardControllable};
+use enigo::{Enigo, Key, KeyboardControllable, MouseButton, MouseControllable};
 use qr2term::print_qr;
 use rocket::config::{Config, Environment, LoggingLevel};
 use rocket::http::ContentType;
 use rocket::response::content::Content;
+use rocket::State;
 use std::io;
 use std::net::IpAddr;
+use std::vec::Vec;
+
+struct AppAssets {
+  font: Vec<u8>,
+  icon: Vec<u8>,
+}
 
 #[cfg(linux)]
 use std::process::Command;
@@ -137,6 +145,67 @@ fn minus() -> io::Result<String> {
   Ok(String::from("OK"))
 }
 
+#[get("/api/tab")]
+fn tab() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.key_click(Key::Tab);
+  Ok(String::from("OK"))
+}
+
+#[get("/api/enter")]
+fn enter() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.key_click(Key::Return);
+  Ok(String::from("OK"))
+}
+
+#[get("/api/refresh")]
+fn refresh() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.key_click(Key::F5);
+  Ok(String::from("OK"))
+}
+
+#[get("/api/fullscreen")]
+fn fullscreen() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.key_click(Key::Layout('f'));
+  Ok(String::from("OK"))
+}
+
+#[get("/api/escape")]
+fn escape() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.key_click(Key::Escape);
+  Ok(String::from("OK"))
+}
+
+#[get("/api/move_mouse?<x>&<y>")]
+fn move_mouse(x: i32, y: i32) -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.mouse_move_relative(x, y);
+  Ok(String::from("OK"))
+}
+
+#[get("/api/click")]
+fn click() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.mouse_click(MouseButton::Left);
+  Ok(String::from("OK"))
+}
+
+#[get("/font")]
+fn font(assets: State<AppAssets>) -> io::Result<Content<Vec<u8>>> {
+  let response = Content(ContentType::WOFF2, assets.font.to_owned());
+  Ok(response)
+}
+
+#[get("/icon")]
+fn icon(assets: State<AppAssets>) -> io::Result<Content<Vec<u8>>> {
+  let response = Content(ContentType::WEBP, assets.icon.to_owned());
+  Ok(response)
+}
+
 #[get("/")]
 fn index() -> io::Result<Content<String>> {
   let response = Content(ContentType::HTML, html::HTML_CONTENT.to_string());
@@ -167,11 +236,17 @@ fn main() {
     .log_level(LoggingLevel::Off)
     .unwrap();
 
+  let font = base64::decode(html::FONT).unwrap();
+  let icon = base64::decode(html::ICON).unwrap();
+
   rocket::custom(config)
+    .manage(AppAssets { font, icon })
     .mount(
       "/",
       routes![
         index,
+        font,
+        icon,
         os,
         skip_forward,
         skip_back,
@@ -180,7 +255,14 @@ fn main() {
         seek_back,
         pause,
         plus,
-        minus
+        minus,
+        tab,
+        enter,
+        refresh,
+        fullscreen,
+        escape,
+        move_mouse,
+        click
       ],
     )
     .launch();

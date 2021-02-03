@@ -1,0 +1,35 @@
+.toastContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 2em;
+}
+
+.toast {
+  padding: 0.5em 0.8em;
+  width: 80vw;
+  border-radius: 2em;
+  background: var(--bgCol);
+  border: var(--borderWidth) solid var(--elemCol);
+  color: var(--fontCol);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow);
+  opacity: 0.8;
+}
+
+.toastContent {
+  flex-grow: 1;
+}
+
+.toastIcon {
+  flex-shrink: 0;
+  fill: var(--fontCol);
+  height: 1.5em;
+  width: 1.5em;
+  margin-right: 0.8em;
+}

@@ -1,0 +1,29 @@
+.pad {
+  border: var(--borderWidth) solid var(--elemCol);
+  border-radius: var(--borderRadius);
+  width: calc(90vw - (2 * var(--borderWidth)));
+  height: 50vh;
+  box-sizing: border-box;
+  margin: 5px 0;
+  transition: border-color 100ms ease-in-out;
+}
+
+.active {
+  border-color: var(--activeCol);
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}

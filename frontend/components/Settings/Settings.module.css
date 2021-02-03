@@ -1,0 +1,39 @@
+.settings {
+  height: 100vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.settings .resetButton {
+  flex: unset;
+  align-self: flex-end;
+}
+
+.select {
+  appearance: none;
+  border: var(--borderWidth) solid var(--elemCol);
+  background: var(--bgCol);
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: var(--borderRadius);
+  margin-bottom: 1rem;
+  font-size: 22px;
+  color: var(--fontCol);
+  font-family: "SpaceGrotesk", sans-serif;
+  outline: none;
+}
+
+.details {
+  width: 100%;
+  color: var(--fontCol);
+  font-family: "SpaceGrotesk", sans-serif;
+}
+
+.description {
+  margin-bottom: 1.5rem;
+}

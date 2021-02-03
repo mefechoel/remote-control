@@ -1,39 +1,27 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const fs = require('fs');
-const path = require('path');
-const { minify } = require('html-minifier-terser');
+const fs = require("fs");
+const path = require("path");
 
-const readFile = (relativePath, encoding = 'utf-8') =>
+const readFile = (relativePath, encoding = "utf-8") =>
   fs.readFileSync(path.join(__dirname, relativePath), encoding);
 
-const image = readFile('../static/icons/logo-192.png', 'base64');
-const htmlTemplate = readFile('../static/index.html');
-const htmlRs = readFile('../src/_html.rs');
-
-const dataUrl = `data:image/png;base64,${image}`;
-
-const html = htmlTemplate.replace('%ICON_DATA_URL%', dataUrl);
-
-const minifierOptions = {
-  removeComments: true,
-  collapseWhitespace: true,
-  removeRedundantAttributes: true,
-  useShortDoctype: true,
-  removeEmptyAttributes: true,
-  removeStyleLinkTypeAttributes: true,
-  minifyJS: true,
-  minifyCSS: true,
-  minifyURLs: true,
-};
-
-const minifiedHtml = minify(html, minifierOptions);
-const embeddedHtmlRs = htmlRs.replace(
-  '"%HTML_CONTENT%"',
-  JSON.stringify(minifiedHtml),
+const font = readFile(
+  "../static/fonts/SpaceGrotesk/SpaceGrotesk-var.woff2",
+  "base64",
 );
+const icon = readFile("../static/icons/logo-512.webp", "base64");
+const html = readFile("../dist/index.html");
+// const htmlRs = readFile("../src/_html.rs");
 
-fs.writeFileSync(
-  path.join(__dirname, '../src/html.rs'),
-  embeddedHtmlRs,
-  'utf-8',
-);
+// const embeddedHtmlRs = htmlRs.replace(
+//   '"%HTML_CONTENT%"',
+//   JSON.stringify(html),
+// );
+
+const rs = `
+pub const HTML_CONTENT: &str = ${JSON.stringify(html)};
+pub const FONT: &str = "${font}";
+pub const ICON: &str = "${icon}";
+`;
+
+fs.writeFileSync(path.join(__dirname, "../src/html.rs"), rs, "utf-8");
