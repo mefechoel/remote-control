@@ -62,6 +62,10 @@
   }
 </script>
 
+<svelte:head>
+  <meta name="theme-color" content={$settings.theme.themeCol} />
+</svelte:head>
+
 <main class={cssStyle.wrapper}>
   <InfoToast />
   {#if view === viewTypes.CONTROLS}

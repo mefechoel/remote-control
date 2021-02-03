@@ -2,6 +2,7 @@ const themes = {
   Insurance: {
     borderRadius: 5,
     borderWidth: 4,
+    themeCol: "#b75d69",
     bgCol: "#1a1423",
     elemCol: "#b75d69",
     fontCol: "#eee",
@@ -11,6 +12,7 @@ const themes = {
   Grain: {
     borderRadius: 0,
     borderWidth: 4,
+    themeCol: "#05396b",
     bgCol: "#5cdb94",
     elemCol: "#05396b",
     fontCol: "#05396b",
@@ -20,6 +22,7 @@ const themes = {
   Interaction: {
     borderRadius: 0,
     borderWidth: 4,
+    themeCol: "#3500d4",
     bgCol: "#090909",
     elemCol: "#3500d4",
     fontCol: "#583baf",
@@ -29,6 +32,7 @@ const themes = {
   Guidance: {
     borderRadius: 0,
     borderWidth: 4,
+    themeCol: "#65fcf1",
     bgCol: "#0b0c10",
     elemCol: "#65fcf1",
     fontCol: "#65fcf1",
@@ -38,6 +42,7 @@ const themes = {
   Garbage: {
     borderRadius: 0,
     borderWidth: 5,
+    themeCol: "#5d62be",
     bgCol: "#1e2144",
     elemCol: "#5d62be",
     fontCol: "#f1ddd6",
@@ -47,6 +52,7 @@ const themes = {
   Foundation: {
     borderRadius: 0,
     borderWidth: 5,
+    themeCol: "#ff815b",
     bgCol: "#1e2144",
     elemCol: "#ff815b",
     fontCol: "#f1ddd6",
@@ -56,6 +62,7 @@ const themes = {
   Synergy: {
     borderRadius: 0,
     borderWidth: 4,
+    themeCol: "#050505",
     bgCol: "#050505",
     elemCol: "#eee",
     fontCol: "#d7880d",
@@ -65,6 +72,7 @@ const themes = {
   Light: {
     borderRadius: 20,
     borderWidth: 4,
+    themeCol: "#29455b",
     bgCol: "#f4f9fd",
     elemCol: "#29455b",
     fontCol: "#29455b",

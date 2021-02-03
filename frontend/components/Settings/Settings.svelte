@@ -21,7 +21,7 @@
   });
 
   const handleClear = () => {
-    localStorage.clear();
+    window.localStorage.clear();
     settings.set(defaultSettings);
     selectedTheme.set($settings.themeName);
   };

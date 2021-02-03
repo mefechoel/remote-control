@@ -10,6 +10,7 @@ import { terser } from "rollup-plugin-terser";
 import postcss from "rollup-plugin-postcss";
 import autoprefixer from "autoprefixer";
 import babel from "@rollup/plugin-babel";
+import compiler from "@ampproject/rollup-plugin-closure-compiler";
 import consts from "./rollupPlugins/consts";
 import html from "./rollupPlugins/html";
 import minifyHtml from "./rollupPlugins/minifyHtml";
@@ -75,6 +76,7 @@ export default {
       extensions: [".js", ".mjs", ".html", ".svelte"],
     }),
 
+    production && opt && compiler(),
     production && opt && terser({ compress: { passes: 3 } }),
 
     html({

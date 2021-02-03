@@ -11,13 +11,15 @@ export const defaultSettings = {
   theme: themes.Insurance,
   themeName: "Insurance",
 };
-const initialValue = JSON.parse(localStorage.getItem(STORAGE_KEY));
+const initialValue = JSON.parse(
+  window.localStorage.getItem(STORAGE_KEY),
+);
 
 const { set, subscribe } = writable(initialValue || defaultSettings);
 
 const settings = {
   set(value) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
     set(value);
   },
   subscribe,
