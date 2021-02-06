@@ -15,6 +15,7 @@
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       display = false;
+      info.set(null);
     }, $settings.infoDisplayDuration);
   }
 
