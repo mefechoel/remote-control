@@ -10,7 +10,9 @@ const font = readFile(
   "base64",
 );
 const icon = readFile("../static/icons/logo-512.webp", "base64");
-const html = readFile("../dist/index.html");
+const html = readFile("../dist/index.html", "base64");
+const htmlBr = readFile("../dist/index.html.br", "base64");
+const htmlGz = readFile("../dist/index.html.gz", "base64");
 // const htmlRs = readFile("../src/_html.rs");
 
 // const embeddedHtmlRs = htmlRs.replace(
@@ -19,7 +21,9 @@ const html = readFile("../dist/index.html");
 // );
 
 const rs = `
-pub const HTML_CONTENT: &str = ${JSON.stringify(html)};
+pub const HTML_CONTENT: &str = "${html}";
+pub const HTML_BROTLI: &str = "${htmlBr}";
+pub const HTML_GZIP: &str = "${htmlGz}";
 pub const FONT: &str = "${font}";
 pub const ICON: &str = "${icon}";
 `;

@@ -13,16 +13,49 @@ use dns_lookup;
 use enigo::{Enigo, Key, KeyboardControllable, MouseButton, MouseControllable};
 use qr2term::print_qr;
 use rocket::config::{Config, Environment, LoggingLevel};
+use rocket::http::hyper::header::{ContentEncoding, Encoding};
 use rocket::http::ContentType;
+use rocket::request::{FromRequest, Outcome, Request};
 use rocket::response::content::Content;
+use rocket::response::Response;
 use rocket::State;
 use std::io;
+use std::io::Cursor;
 use std::net::IpAddr;
 use std::vec::Vec;
 
 struct AppAssets {
   font: Vec<u8>,
   icon: Vec<u8>,
+  html: Vec<u8>,
+  html_br: Vec<u8>,
+  html_gz: Vec<u8>,
+}
+
+enum CompEncoding {
+  Brotli,
+  Gzip,
+  NoComp,
+}
+
+impl<'a, 'r> FromRequest<'a, 'r> for CompEncoding {
+  type Error = ();
+
+  fn from_request(request: &'a Request<'r>) -> Outcome<Self, Self::Error> {
+    let encodings: Vec<&str> =
+      request.headers().get("Accept-Encoding").collect();
+    let br = encodings.iter().find(|enc| enc.to_string().contains("br"));
+    let gz = encodings
+      .iter()
+      .find(|enc| enc.to_string().contains("gzip"));
+    if br.is_some() {
+      Outcome::Success(CompEncoding::Brotli)
+    } else if gz.is_some() {
+      Outcome::Success(CompEncoding::Gzip)
+    } else {
+      Outcome::Success(CompEncoding::NoComp)
+    }
+  }
 }
 
 #[cfg(linux)]
@@ -207,14 +240,28 @@ fn icon(assets: State<AppAssets>) -> io::Result<Content<Vec<u8>>> {
 }
 
 #[get("/")]
-fn index() -> io::Result<Content<String>> {
-  let response = Content(ContentType::HTML, html::HTML_CONTENT.to_string());
-  Ok(response)
+fn index(assets: State<AppAssets>, comp: CompEncoding) -> Response {
+  let (body, enc) = match comp {
+    CompEncoding::Brotli => (
+      assets.html_br.to_owned(),
+      Encoding::EncodingExt("br".to_string()),
+    ),
+    CompEncoding::Gzip => (assets.html_gz.to_owned(), Encoding::Gzip),
+    CompEncoding::NoComp => (assets.html.to_owned(), Encoding::Identity),
+  };
+  let response = Response::build()
+    .header(ContentType::HTML)
+    .header(ContentEncoding(vec![enc]))
+    .sized_body(Cursor::new(body))
+    .finalize();
+  response
 }
 
 fn main() {
-  let hostname = dns_lookup::get_hostname().expect("Could not identify hostname.");
-  let ips = dns_lookup::lookup_host(&hostname).expect("Could not lookup ip addresses.");
+  let hostname =
+    dns_lookup::get_hostname().expect("Could not identify hostname.");
+  let ips =
+    dns_lookup::lookup_host(&hostname).expect("Could not lookup ip addresses.");
   let ip = ips
     .into_iter()
     .filter_map(|ip| match ip {
@@ -238,9 +285,18 @@ fn main() {
 
   let font = base64::decode(html::FONT).unwrap();
   let icon = base64::decode(html::ICON).unwrap();
+  let html = base64::decode(html::HTML_CONTENT).unwrap();
+  let html_br = base64::decode(html::HTML_BROTLI).unwrap();
+  let html_gz = base64::decode(html::HTML_GZIP).unwrap();
 
   rocket::custom(config)
-    .manage(AppAssets { font, icon })
+    .manage(AppAssets {
+      font,
+      icon,
+      html,
+      html_br,
+      html_gz,
+    })
     .mount(
       "/",
       routes![

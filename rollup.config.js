@@ -14,6 +14,7 @@ import compiler from "@ampproject/rollup-plugin-closure-compiler";
 import consts from "./rollupPlugins/consts";
 import html from "./rollupPlugins/html";
 import minifyHtml from "./rollupPlugins/minifyHtml";
+import compress from "./rollupPlugins/comp";
 
 rimraf.sync("dist");
 
@@ -103,6 +104,8 @@ export default {
     // If we're building for production (npm run build
     // instead of npm run start), minify
     production && opt && minifyHtml(),
+
+    production && compress(),
   ],
   watch: {
     clearScreen: false,

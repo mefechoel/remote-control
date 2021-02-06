@@ -18,7 +18,8 @@
     "prefer-const": "off",
     "object-curly-newline": "off",
     "function-paren-newline": "off",
-    "no-confusing-arrow": "off"
+    "no-confusing-arrow": "off",
+    "no-restricted-syntax": "off"
   },
   "env": {
     "es6": true,
