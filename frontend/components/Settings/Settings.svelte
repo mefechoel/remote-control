@@ -28,11 +28,20 @@
 </script>
 
 <div class={style.settings}>
-  <select bind:value={$selectedTheme} class={style.select}>
-    {#each options as theme (theme)}
-      <option value={theme}>{theme}</option>
-    {/each}
-  </select>
+  <label class={style.selectLabel} for="theme-select">
+    <span class={style.selectLabelText}>Farbschema:</span>
+    <div class={style.selectWrapper}>
+      <select
+        id="theme-select"
+        bind:value={$selectedTheme}
+        class={style.select}
+      >
+        {#each options as theme (theme)}
+          <option value={theme}>{theme}</option>
+        {/each}
+      </select>
+    </div>
+  </label>
   <RangeInput
     label="Randraduis"
     min={0}

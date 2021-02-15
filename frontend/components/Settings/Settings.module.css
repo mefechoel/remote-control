@@ -21,7 +21,6 @@
   width: 100%;
   padding: 0.5rem 1rem;
   border-radius: var(--borderRadius);
-  margin-bottom: 1rem;
   font-size: 22px;
   color: var(--fontCol);
   font-family: "SpaceGrotesk", sans-serif;
@@ -37,4 +36,36 @@
 .description {
   margin-bottom: 1.5rem;
   outline: none;
+}
+
+.selectLabel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.selectLabelText {
+  color: var(--fontCol);
+  margin-bottom: 0.5rem;
+}
+
+.selectWrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.selectWrapper::after {
+  --size: 0.35em;
+  position: absolute;
+  top: calc(50% - (var(--size) / 3));
+  right: calc(1rem + var(--size));
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid var(--fontCol);
+  pointer-events: none;
 }
