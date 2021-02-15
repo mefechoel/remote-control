@@ -32,6 +32,7 @@
 }
 
 .viewSwitch.button {
+  z-index: 2;
   position: fixed;
   bottom: 2rem;
   right: 2rem;

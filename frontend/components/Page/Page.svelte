@@ -16,6 +16,7 @@
 <div
   class={cx(
     style.page,
+    !hasChanged && style.unchanged,
     firstPage && !hasChanged && style.initial,
     active && hasChanged && style.active,
     !active && hasChanged && style.inactive,

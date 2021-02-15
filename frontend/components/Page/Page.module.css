@@ -21,9 +21,14 @@
   animation: fadeIn 300ms ease-in-out forwards;
 }
 
+.page.unchanged {
+  z-index: -1;
+}
+
 .page.initial {
   animation: none;
   opacity: 1;
+  z-index: 1;
 }
 
 @keyframes fadeIn {
