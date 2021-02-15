@@ -1,12 +1,3 @@
-.controlls {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-}
-
 .row {
   display: flex;
   justify-content: center;

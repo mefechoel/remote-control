@@ -14,15 +14,19 @@
   import Button from "./components/Button";
   import cx from "./util/cx";
   import settings from "./stores/settings";
+  import Page from "./components/Page";
 
   const viewTypes = {
     CONTROLS: 0,
     MOUSE: 1,
     SETTINGS: 2,
   };
+  const numViews = Object.keys(viewTypes).length;
+  const initialView = viewTypes.CONTROLS;
 
-  const getPrevViewId = (viewId) => (viewId - 1 + 3) % 3;
-  const getNextViewId = (viewId) => (viewId + 1) % 3;
+  const getPrevViewId = (viewId) =>
+    (viewId - 1 + numViews) % numViews;
+  const getNextViewId = (viewId) => (viewId + 1) % numViews;
 
   const viewInfo = {
     [getPrevViewId(
@@ -34,7 +38,7 @@
     )]: "Zu den Einstellungen wechseln",
   };
 
-  let view = viewTypes.CONTROLS;
+  let view = initialView;
   let mounted = false;
 
   const handleChangeView = () => {
@@ -68,15 +72,24 @@
 
 <main class={cssStyle.wrapper}>
   <InfoToast />
-  {#if view === viewTypes.CONTROLS}
+  <Page
+    active={view === viewTypes.CONTROLS}
+    firstPage={initialView === viewTypes.CONTROLS}
+  >
     <Controls />
-  {/if}
-  {#if view === viewTypes.MOUSE}
+  </Page>
+  <Page
+    active={view === viewTypes.MOUSE}
+    firstPage={initialView === viewTypes.MOUSE}
+  >
     <Touchpad />
-  {/if}
-  {#if view === viewTypes.SETTINGS}
+  </Page>
+  <Page
+    active={view === viewTypes.SETTINGS}
+    firstPage={initialView === viewTypes.SETTINGS}
+  >
     <Settings />
-  {/if}
+  </Page>
   <Button
     class={cx(cssStyle.viewSwitch, cssStyle.button)}
     activeClass={cssStyle.active}

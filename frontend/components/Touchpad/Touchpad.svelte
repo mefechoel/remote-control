@@ -61,31 +61,29 @@
     handleMove(e.touches[0].clientX, e.touches[0].clientY);
 </script>
 
-<div class={style.wrapper}>
-  <div class={style.row}>
-    <ControlButton
-      icon={Refresh}
-      endpoint="refresh"
-      info="Seite neu laden"
-    />
-    <ControlButton
-      icon={Escape}
-      endpoint="escape"
-      info="Vollbildmodus verlassen (Escape)"
-    />
-    <ControlButton
-      icon={Fullscreen}
-      endpoint="fullscreen"
-      info="Vollbildmodus wechseln mit 'F'"
-    />
-  </div>
-  <div
-    class={style.pad + (isMousePressed ? ` ${style.active}` : "")}
-    on:mousedown={handleMouseDown}
-    on:mousemove={handleMouseMove}
-    on:mouseup={handleUp}
-    on:touchstart={handleTouchDown}
-    on:touchmove={handleTouchMove}
-    on:touchend={handleUp}
+<div class={style.row}>
+  <ControlButton
+    icon={Refresh}
+    endpoint="refresh"
+    info="Seite neu laden"
+  />
+  <ControlButton
+    icon={Escape}
+    endpoint="escape"
+    info="Vollbildmodus verlassen (Escape)"
+  />
+  <ControlButton
+    icon={Fullscreen}
+    endpoint="fullscreen"
+    info="Vollbildmodus wechseln mit 'F'"
   />
 </div>
+<div
+  class={style.pad + (isMousePressed ? ` ${style.active}` : "")}
+  on:mousedown={handleMouseDown}
+  on:mousemove={handleMouseMove}
+  on:mouseup={handleUp}
+  on:touchstart={handleTouchDown}
+  on:touchmove={handleTouchMove}
+  on:touchend={handleUp}
+/>
