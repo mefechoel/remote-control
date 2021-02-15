@@ -227,6 +227,20 @@ fn click() -> io::Result<String> {
   Ok(String::from("OK"))
 }
 
+#[get("/api/scroll_up")]
+fn scroll_up() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.mouse_scroll_y(1);
+  Ok(String::from("OK"))
+}
+
+#[get("/api/scroll_down")]
+fn scroll_down() -> io::Result<String> {
+  let mut enigo = Enigo::new();
+  enigo.mouse_scroll_y(-1);
+  Ok(String::from("OK"))
+}
+
 #[get("/font")]
 fn font(assets: State<AppAssets>) -> io::Result<Content<Vec<u8>>> {
   let response = Content(ContentType::WOFF2, assets.font.to_owned());
@@ -318,7 +332,9 @@ fn main() {
         fullscreen,
         escape,
         move_mouse,
-        click
+        click,
+        scroll_up,
+        scroll_down
       ],
     )
     .launch();

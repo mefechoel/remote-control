@@ -1,9 +1,11 @@
 .button {
+  --defaultWidth: 90px;
+  --defaultHeight: 90px;
+  width: var(--width, var(--defaultWidth));
+  height: var(--height, var(--defaultHeight));
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 90px;
-  height: 90px;
   background: var(--elemCol);
   border: none;
   border-radius: var(--borderRadius);

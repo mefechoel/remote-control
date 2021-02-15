@@ -11,6 +11,8 @@ export { default as PlayPause } from "./PlayPause.svelte";
 export { default as Plus } from "./Plus.svelte";
 export { default as Refresh } from "./Refresh.svelte";
 export { default as Remote } from "./Remote.svelte";
+export { default as ScrollDown } from "./ScrollDown.svelte";
+export { default as ScrollUp } from "./ScrollUp.svelte";
 export { default as SeekBack } from "./SeekBack.svelte";
 export { default as SeekForward } from "./SeekForward.svelte";
 export { default as Settings } from "./Settings.svelte";

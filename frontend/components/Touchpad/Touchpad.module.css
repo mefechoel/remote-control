@@ -17,3 +17,7 @@
   justify-content: center;
   width: 90vw;
 }
+
+.scrollButton {
+  --height: 45px;
+}

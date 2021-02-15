@@ -5,8 +5,15 @@
   export let icon;
   export let endpoint;
   export let info;
+  let className = "";
+  export { className as class };
 
   const handleActivate = () => request(endpoint);
 </script>
 
-<SvgButton {info} {icon} on:activate={handleActivate} />
+<SvgButton
+  class={className}
+  {info}
+  {icon}
+  on:activate={handleActivate}
+/>

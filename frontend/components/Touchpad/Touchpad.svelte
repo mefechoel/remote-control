@@ -1,6 +1,12 @@
 <script>
   import ControlButton from "../ControlButton";
-  import { Escape, Fullscreen, Refresh } from "../Icons";
+  import {
+    Escape,
+    Fullscreen,
+    Refresh,
+    ScrollDown,
+    ScrollUp,
+  } from "../Icons";
   import request from "../request";
   import settings from "../../stores/settings";
   import style from "./Touchpad.module.css";
@@ -87,3 +93,17 @@
   on:touchmove={handleTouchMove}
   on:touchend={handleUp}
 />
+<div class={style.row}>
+  <ControlButton
+    class={style.scrollButton}
+    icon={ScrollUp}
+    endpoint="scroll_up"
+    info="Nach oben scrollen"
+  />
+  <ControlButton
+    class={style.scrollButton}
+    icon={ScrollDown}
+    endpoint="scroll_down"
+    info="Nach unten scrollen"
+  />
+</div>
