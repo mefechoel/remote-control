@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { minify as minifyHtml } from 'html-minifier-terser';
+import { minify as minifyHtml } from "html-minifier-terser";
 
 export default function htmlMinifyPlugin(
   minifierOptions = {
-    removeComments: true,
+    removeComments: false,
     collapseWhitespace: true,
     removeRedundantAttributes: true,
     useShortDoctype: true,
@@ -15,10 +15,10 @@ export default function htmlMinifyPlugin(
   },
 ) {
   return {
-    name: 'html-minify-plugin',
+    name: "html-minify-plugin",
     async generateBundle(options, bundle) {
       Object.entries(bundle).forEach(([key, { source }]) => {
-        if (key.endsWith('.html')) {
+        if (key.endsWith(".html")) {
           const minifiedSource = minifyHtml(source, minifierOptions);
           // eslint-disable-next-line no-param-reassign
           bundle[key].source = minifiedSource;

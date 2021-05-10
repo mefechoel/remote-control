@@ -30,6 +30,7 @@ struct AppAssets {
   html: Vec<u8>,
   html_br: Vec<u8>,
   html_gz: Vec<u8>,
+  licenses: Vec<u8>,
 }
 
 enum CompEncoding {
@@ -241,6 +242,12 @@ fn scroll_down() -> io::Result<String> {
   Ok(String::from("OK"))
 }
 
+#[get("/licenses")]
+fn licenses(assets: State<AppAssets>) -> io::Result<Content<Vec<u8>>> {
+  let response = Content(ContentType::WOFF2, assets.licenses.to_owned());
+  Ok(response)
+}
+
 #[get("/font")]
 fn font(assets: State<AppAssets>) -> io::Result<Content<Vec<u8>>> {
   let response = Content(ContentType::WOFF2, assets.font.to_owned());
@@ -302,6 +309,7 @@ fn main() {
   let html = base64::decode(html::HTML_CONTENT).unwrap();
   let html_br = base64::decode(html::HTML_BROTLI).unwrap();
   let html_gz = base64::decode(html::HTML_GZIP).unwrap();
+  let licenses = base64::decode(html::LICENSES).unwrap();
 
   rocket::custom(config)
     .manage(AppAssets {
@@ -310,11 +318,13 @@ fn main() {
       html,
       html_br,
       html_gz,
+      licenses,
     })
     .mount(
       "/",
       routes![
         index,
+        licenses,
         font,
         icon,
         os,
