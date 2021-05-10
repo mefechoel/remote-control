@@ -79,6 +79,16 @@ const themes = {
     elemFontCol: "#f4f9fd",
     activeCol: "#051725",
   },
+  Innovation: {
+    borderRadius: 2,
+    borderWidth: 4,
+    themeCol: "#e81818",
+    bgCol: "#040411",
+    elemCol: "#e81818",
+    fontCol: "#e81818",
+    elemFontCol: "#040411",
+    activeCol: "#1e9ad7",
+  },
 };
 
 export default themes;
