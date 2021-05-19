@@ -7,7 +7,7 @@ license = "MIT"
 
 [dependencies]
 enigo = "0.0.14"
-rocket = "0.4.6"
+rocket = "0.4.8"
 rocket_contrib = "0.4.6"
 serde = "1.0"
 serde_json = "1.0"
