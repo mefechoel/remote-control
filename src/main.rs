@@ -6,12 +6,10 @@ extern crate rocket;
 #[cfg(windows)]
 mod win;
 
-mod html;
-
-use base64;
 use dns_lookup;
 use enigo::{Enigo, Key, KeyboardControllable, MouseButton, MouseControllable};
 use qr2term::print_qr;
+use regex::Regex;
 use rocket::config::{Config, Environment, LoggingLevel};
 use rocket::http::hyper::header::{ContentEncoding, Encoding};
 use rocket::http::ContentType;
@@ -23,6 +21,14 @@ use std::io;
 use std::io::Cursor;
 use std::net::IpAddr;
 use std::vec::Vec;
+
+const ASSET_FONT: &[u8] =
+  include_bytes!("../static/fonts/SpaceGrotesk/SpaceGrotesk-var.woff2");
+const ASSET_ICON: &[u8] = include_bytes!("../static/icons/logo-512.webp");
+const ASSET_HTML: &[u8] = include_bytes!("../dist/index.html");
+const ASSET_HTML_BR: &[u8] = include_bytes!("../dist/index.html.br");
+const ASSET_HTML_GZ: &[u8] = include_bytes!("../dist/index.html.gz");
+const ASSET_LICENSES: &[u8] = include_bytes!("../lib-licenses.txt");
 
 struct AppAssets {
   font: Vec<u8>,
@@ -283,11 +289,18 @@ fn main() {
     dns_lookup::get_hostname().expect("Could not identify hostname.");
   let ips =
     dns_lookup::lookup_host(&hostname).expect("Could not lookup ip addresses.");
+
+  let unusable_ip_regex = r"\d{1,3}\.\d{1,3}\.\d{1,3}\.(0|1|255)";
   let ip = ips
     .into_iter()
     .filter_map(|ip| match ip {
       IpAddr::V4(ipv4) => Some(ipv4),
       _ => None,
+    })
+    .filter(|ip| {
+      !Regex::new(unusable_ip_regex)
+        .unwrap()
+        .is_match(&ip.to_string())
     })
     .next()
     .expect("Could not find local ip address.")
@@ -304,12 +317,12 @@ fn main() {
     .log_level(LoggingLevel::Off)
     .unwrap();
 
-  let font = base64::decode(html::FONT).unwrap();
-  let icon = base64::decode(html::ICON).unwrap();
-  let html = base64::decode(html::HTML_CONTENT).unwrap();
-  let html_br = base64::decode(html::HTML_BROTLI).unwrap();
-  let html_gz = base64::decode(html::HTML_GZIP).unwrap();
-  let licenses = base64::decode(html::LICENSES).unwrap();
+  let font = Vec::from(ASSET_FONT);
+  let icon = Vec::from(ASSET_ICON);
+  let html = Vec::from(ASSET_HTML);
+  let html_br = Vec::from(ASSET_HTML_BR);
+  let html_gz = Vec::from(ASSET_HTML_GZ);
+  let licenses = Vec::from(ASSET_LICENSES);
 
   rocket::custom(config)
     .manage(AppAssets {

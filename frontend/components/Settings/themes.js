@@ -1,6 +1,6 @@
 const themes = {
   Insurance: {
-    borderRadius: 5,
+    borderRadius: 2,
     borderWidth: 4,
     themeCol: "#b75d69",
     bgCol: "#1a1423",

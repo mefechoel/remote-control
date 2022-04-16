@@ -1,14 +1,14 @@
 {
   "name": "remote-control",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "repository": "https://github.com/mefechoel/remote-control.git",
   "author": "mefechoel <michel.strelow97@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "run-app": "npm run build:frontend && node scripts/build.js && cargo run --release",
-    "run-app:dev": "npm run build:frontend:dev && node scripts/build.js && cargo run --release",
-    "build": "npm run build:frontend && node scripts/build.js && cargo build --release",
+    "run-app": "npm run build:frontend && cargo run --release",
+    "run-app:dev": "npm run build:frontend:dev && cargo run --release",
+    "build": "npm run build:frontend && cargo build --release",
     "build:frontend": "cross-env NODE_ENV=production OPT=true rollup -c",
     "build:frontend:dev": "cross-env NODE_ENV=production OPT=false rollup -c",
     "start": "cross-env NODE_ENV=development rollup -c -w",

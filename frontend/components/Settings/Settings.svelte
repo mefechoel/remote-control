@@ -43,7 +43,7 @@
     </div>
   </label>
   <RangeInput
-    label="Randraduis"
+    label="Randradius"
     min={0}
     max={65}
     step={1}
