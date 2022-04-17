@@ -37,19 +37,17 @@ export default function compPlugin({
           isIncluded(key) &&
           isAboveThreshold(sourceTxt, threshold)
         ) {
-          const compress = (algorithm) => {
+          const compress = () => {
             const compPromise = pool.proxy().then((worker) =>
               worker.compressArtifacts({
                 dir,
                 fileName,
                 source: sourceTxt,
-                algorithm,
               }),
             );
             promises.push(compPromise);
           };
-          compress("gzip");
-          compress("brotli");
+          compress();
         }
       }
       await Promise.all(promises).finally(() => pool.terminate());

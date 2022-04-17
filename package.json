@@ -55,7 +55,6 @@
     "rollup-plugin-terser": "^7.0.2",
     "sirv-cli": "^1.0.10",
     "svelte": "^3.31.2",
-    "wasm-brotli": "^2.0.2",
     "wasm-zopfli": "^1.0.2",
     "workerpool": "^6.1.0"
   },

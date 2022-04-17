@@ -22,25 +22,23 @@ use std::io::Cursor;
 use std::net::IpAddr;
 use std::vec::Vec;
 
-const ASSET_FONT: &[u8] =
+const ASSET_FONT: &'static [u8] =
   include_bytes!("../static/fonts/SpaceGrotesk/SpaceGrotesk-var.woff2");
-const ASSET_ICON: &[u8] = include_bytes!("../static/icons/logo-512.webp");
-const ASSET_HTML: &[u8] = include_bytes!("../dist/index.html");
-const ASSET_HTML_BR: &[u8] = include_bytes!("../dist/index.html.br");
-const ASSET_HTML_GZ: &[u8] = include_bytes!("../dist/index.html.gz");
-const ASSET_LICENSES: &[u8] = include_bytes!("../lib-licenses.txt");
+const ASSET_ICON: &'static [u8] =
+  include_bytes!("../static/icons/logo-512.webp");
+const ASSET_HTML: &'static [u8] = include_bytes!("../dist/index.html");
+const ASSET_HTML_GZ: &'static [u8] = include_bytes!("../dist/index.html.gz");
+const ASSET_LICENSES: &'static [u8] = include_bytes!("../lib-licenses.txt");
 
 struct AppAssets {
-  font: Vec<u8>,
-  icon: Vec<u8>,
-  html: Vec<u8>,
-  html_br: Vec<u8>,
-  html_gz: Vec<u8>,
-  licenses: Vec<u8>,
+  font: &'static [u8],
+  icon: &'static [u8],
+  html: &'static [u8],
+  html_gz: &'static [u8],
+  licenses: &'static [u8],
 }
 
 enum CompEncoding {
-  Brotli,
   Gzip,
   NoComp,
 }
@@ -51,13 +49,10 @@ impl<'a, 'r> FromRequest<'a, 'r> for CompEncoding {
   fn from_request(request: &'a Request<'r>) -> Outcome<Self, Self::Error> {
     let encodings: Vec<&str> =
       request.headers().get("Accept-Encoding").collect();
-    let br = encodings.iter().find(|enc| enc.to_string().contains("br"));
     let gz = encodings
       .iter()
       .find(|enc| enc.to_string().contains("gzip"));
-    if br.is_some() {
-      Outcome::Success(CompEncoding::Brotli)
-    } else if gz.is_some() {
+    if gz.is_some() {
       Outcome::Success(CompEncoding::Gzip)
     } else {
       Outcome::Success(CompEncoding::NoComp)
@@ -269,12 +264,8 @@ fn icon(assets: State<AppAssets>) -> io::Result<Content<Vec<u8>>> {
 #[get("/")]
 fn index(assets: State<AppAssets>, comp: CompEncoding) -> Response {
   let (body, enc) = match comp {
-    CompEncoding::Brotli => (
-      assets.html_br.to_owned(),
-      Encoding::EncodingExt("br".to_string()),
-    ),
-    CompEncoding::Gzip => (assets.html_gz.to_owned(), Encoding::Gzip),
-    CompEncoding::NoComp => (assets.html.to_owned(), Encoding::Identity),
+    CompEncoding::Gzip => (assets.html_gz, Encoding::Gzip),
+    CompEncoding::NoComp => (assets.html, Encoding::Identity),
   };
   let response = Response::build()
     .header(ContentType::HTML)
@@ -317,21 +308,13 @@ fn main() {
     .log_level(LoggingLevel::Off)
     .unwrap();
 
-  let font = Vec::from(ASSET_FONT);
-  let icon = Vec::from(ASSET_ICON);
-  let html = Vec::from(ASSET_HTML);
-  let html_br = Vec::from(ASSET_HTML_BR);
-  let html_gz = Vec::from(ASSET_HTML_GZ);
-  let licenses = Vec::from(ASSET_LICENSES);
-
   rocket::custom(config)
     .manage(AppAssets {
-      font,
-      icon,
-      html,
-      html_br,
-      html_gz,
-      licenses,
+      font: ASSET_FONT,
+      icon: ASSET_ICON,
+      html: ASSET_HTML,
+      html_gz: ASSET_HTML_GZ,
+      licenses: ASSET_LICENSES,
     })
     .mount(
       "/",
