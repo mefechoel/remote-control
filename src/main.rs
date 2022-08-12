@@ -281,7 +281,7 @@ fn main() {
   let ips =
     dns_lookup::lookup_host(&hostname).expect("Could not lookup ip addresses.");
 
-  let unusable_ip_regex = r"\d{1,3}\.\d{1,3}\.\d{1,3}\.(0|1|255)";
+  let unusable_ip_regex = r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.(0|1|255)$";
   let ip = ips
     .into_iter()
     .filter_map(|ip| match ip {
