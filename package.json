@@ -1,6 +1,6 @@
 {
   "name": "remote-control",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "index.js",
   "repository": "https://github.com/mefechoel/remote-control.git",
   "author": "mefechoel <michel.strelow97@gmail.com>",
