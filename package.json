@@ -1,6 +1,6 @@
 {
   "name": "remote-control",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "repository": "https://github.com/mefechoel/remote-control.git",
   "author": "mefechoel <michel.strelow97@gmail.com>",
@@ -17,7 +17,6 @@
     "start:ssr": "npm run build:frontend:dev && run-p start serve:ssr"
   },
   "devDependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "^0.26.0",
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
