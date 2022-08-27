@@ -1,4 +1,6 @@
-# Dependencies
+# Remote Control 📺🎛️
+
+## Dependencies
 
 For usage with Linux you need to install `xdotool` and `libxdo-dev`.
 
@@ -15,7 +17,7 @@ On Arch:
 pacman -S xdotool
 ```
 
-# Build
+## Build
 
 To build the app yourself you need node and npm installed.
 `cd` into the project folder and run:
